@@ -8,6 +8,6 @@ test.beforeEach(async({page}) => {
 })
 
 test('Auto wait checking',async({page}) => {
-    const sucessbut =  page.locator('.bg-success')
-    await sucessbut.click()
+    const sucessbut =  page.locator('.bg-success').textContent
+    await expect(sucessbut).toEqual('Data loaded with AJAX get request.')
 })
