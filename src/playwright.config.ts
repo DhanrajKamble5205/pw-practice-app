@@ -15,7 +15,7 @@ export default defineConfig({
 
   use: {
     trace: 'on-first-retry',
-    baseURL: 'https://www.letskodeit.com/practice', // optional
+    //baseURL: 'https://www.letskodeit.com/practice', // optional
     headless: false,    // so you can see the browser
     viewport: null,     // makes browser full window size
     ignoreHTTPSErrors: true,
