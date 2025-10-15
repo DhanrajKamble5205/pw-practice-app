@@ -9,6 +9,7 @@ test('Page Object Model',async({page}) => {
     const navigationTo = new NavigationPage(page)
     //await navigationTo.MachineLearning()
     await navigationTo.DeepLearning()
-    await navigationTo.TensorfloweBooks()
     await navigationTo.ElasticsearcheBooks()
+    await navigationTo.TensorfloweBooks()
+   
 })
