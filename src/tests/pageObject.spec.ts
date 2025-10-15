@@ -9,5 +9,6 @@ test('Page Object Model',async({page}) => {
     const navigationTo = new NavigationPage(page)
     await navigationTo.Tags()
     await navigationTo.FreeEBooks()
+    await page.waitForTimeout(1000); 
   
 })
