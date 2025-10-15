@@ -8,9 +8,6 @@ test.beforeEach(async ({page}) => {
 test('Page Object Model',async({page}) => {
     const navigationTo = new NavigationPage(page)
     await navigationTo.Tags()
-    //await navigationTo.MachineLearning()
-    // await navigationTo.DeepLearning()
-    // await navigationTo.ElasticsearcheBooks()
-    // await navigationTo.TensorfloweBooks()
-   
+    await navigationTo.FreeEBooks()
+  
 })

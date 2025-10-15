@@ -16,44 +16,49 @@ export class NavigationPage {
         for (const item of menuItems) {
         await this.page.getByText(item).first().click();
         await this.page.waitForTimeout(500); // short pause between clicks
-    }
+        }
      }
-    async MachineLearning() {
-        await this.page.getByText('Free Ebooks').first().click()
-        await this.page.locator('[style="display: block;"] ul.sub-menu li', 
-            {hasText:"Free Machine Learning Ebooks"}).click()
 
-        const locator = this.page.locator('ul.wp-block-list li',
-            {hasText:'A Course in Machine Learning'})
-            .getByRole('link', { name: '[Download]' }).click();
-        // await this.page.waitForSelector('ul.wp-block-list');
-        await this.page.waitForTimeout(60000)
+     async FreeEBooks() {
+    // Step 1 - Machine Learning ebooks
+        await this.page.getByText('Free Ebooks').first().hover();
+        const MachineLearningLink = this.page.locator('[style="display: block;"] ul.sub-menu li',
+            { hasText: 'Free Machine Learning Ebooks' });
+        await MachineLearningLink.click();
+
+        // const MachineLearningDownload = this.page.locator('ul.wp-block-list li',
+        //     { hasText: 'A Course in Machine Learning' }).getByRole('link', { name: '[Download]' });
+        // await MachineLearningDownload.waitFor({ state: 'visible', timeout: 10000 });
+        // await MachineLearningDownload.scrollIntoViewIfNeeded();
+        // await MachineLearningDownload.click();
+        await this.page.waitForTimeout(1000);
+        console.log('✅ Machine Learning sections visited Successfully.');
+
+    // Step 2 - Deep Learning ebooks
+        await this.page.getByText('Free Ebooks').first().hover();
+
+        const deepLearningLink = this.page.locator('[style="display: block;"] ul.sub-menu li',
+            { hasText: 'Free Deep Learning eBooks' });
+        await deepLearningLink.click();
+        await this.page.waitForTimeout(1000);
+        console.log('✅ Deep Learning sections visited Successfully.');
+
+// Step 3 - Free Elasticsearch eBooks
+            await this.page.getByText('Free Ebooks').first().hover()
+            const ElasticsearcheBooksLink = this.page.locator('[style="display: block;"] ul.sub-menu li', 
+                {hasText:"Free Elasticsearch eBooks"})
+            await ElasticsearcheBooksLink.click()  
+            await this.page.waitForTimeout(1000);
+            console.log('✅ Elasticsearch eBooks sections visited Successfully.');
+
+// Step 4 - Free Tensorflow eBooks
+            await this.page.getByText('Free Ebooks').first().hover()
+            const TensorfloweBooksLink = this.page.locator('[style="display: block;"] ul.sub-menu li', 
+                {hasText:"Free Tensorflow eBooks"})
+            await TensorfloweBooksLink.click()
+            await this.page.waitForTimeout(1000); 
+            console.log('✅ Tensorflow Learning sections visited Successfully.'); 
         
-        //await locator.waitFor({ state: 'visible', timeout: 60000 });
-        // await locator.scrollIntoViewIfNeeded();
-        // await locator.click();
-            await this.page.waitForTimeout(500)
-    }
 
-    async DeepLearning() {
-        await this.page.getByText('Free Ebooks').first().hover()
-        await this.page.locator('[style="display: block;"] ul.sub-menu li', 
-            {hasText:"Free Deep Learning eBooks"}).click()   
-            await this.page.waitForTimeout(500)
     }
-
-    async TensorfloweBooks() {
-        await this.page.getByText('Free Ebooks').first().hover()
-        await this.page.locator('[style="display: block;"] ul.sub-menu li', 
-            {hasText:"Free Tensorflow eBooks"}).click()
-            await this.page.waitForTimeout(500)  
-    }
-
-    async ElasticsearcheBooks() {
-        await this.page.getByText('Free Ebooks').first().hover()
-        await this.page.locator('[style="display: block;"] ul.sub-menu li', 
-            {hasText:"Free Elasticsearch eBooks"}).click()  
-            await this.page.waitForTimeout(500) 
-    }
-
 }
