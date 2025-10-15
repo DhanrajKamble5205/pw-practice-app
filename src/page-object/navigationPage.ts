@@ -11,6 +11,13 @@ export class NavigationPage {
         this.page = page
     }
 
+     async Tags() {
+       const menuItems = ['About', 'CheatSheets', 'Free Ebooks', 'Tester’s Hub', 'Contact Us'];
+        for (const item of menuItems) {
+        await this.page.getByText(item).first().click();
+        await this.page.waitForTimeout(500); // short pause between clicks
+    }
+     }
     async MachineLearning() {
         await this.page.getByText('Free Ebooks').first().click()
         await this.page.locator('[style="display: block;"] ul.sub-menu li', 
