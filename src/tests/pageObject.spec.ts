@@ -7,8 +7,9 @@ test.beforeEach(async ({page}) => {
 
 test('Page Object Model',async({page}) => {
     const navigationTo = new NavigationPage(page)
-    await navigationTo.Tags()
-    await navigationTo.FreeEBooks()
-    await page.waitForTimeout(1000); 
+    // await navigationTo.Tags()
+    // await navigationTo.FreeEBooks()
+    // await page.waitForTimeout(1000); 
+    await navigationTo.ContactUs('Robat Adrison','abc@text.com','Testing')
   
 })

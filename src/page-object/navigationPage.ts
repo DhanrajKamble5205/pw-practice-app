@@ -1,19 +1,16 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page ,expect } from "@playwright/test";
 import { FormLayoutsComponent } from "../app/pages/forms/form-layouts/form-layouts.component";
 import { delay } from "rxjs-compat/operator/delay";
 import { timeout } from "rxjs-compat/operator/timeout";
 import { time } from "echarts";
 
 export class NavigationPage {
-    readonly page:Page
-    readonly FreeEBooksLoct : Locator
-    readonly MachineLearningLoct : Locator
-    readonly DeepLearningLoct : Locator
-    readonly ElasticsearchLoct : Locator
-    readonly TensorflowLoct : Locator
-
-
-
+        readonly page:Page
+        readonly FreeEBooksLoct : Locator
+        readonly MachineLearningLoct : Locator
+        readonly DeepLearningLoct : Locator
+        readonly ElasticsearchLoct : Locator
+        readonly TensorflowLoct : Locator
 
     constructor (page:Page) {
         this.page = page
@@ -73,5 +70,19 @@ export class NavigationPage {
             console.log('✅ Tensorflow Learning sections visited Successfully.'); 
         
 
+    }
+// Parametrized Method declation
+    async ContactUs(name:string, email:string, subject:string) {
+            click();
+        await this.page.waitForTimeout(5000)
+        await this.page.getByRole('textbox',{name:"Name"}).fill(name)
+        await this.page.getByRole('textbox',{name:"Email"}).fill(email)
+        await this.page.getByRole('textbox',{name:"Subject"}).fill(subject)
+        await this.page.getByPlaceholder('Message').fill('This is a test message')
+        //await this.page.locator('.rc-anchor-content #recaptcha-anchor').first().click()
+        await this.page.getByRole('button',{name:"Send"}).click()
+        expect(await this.page.locator('.warning_msg closable').isVisible())
+
+        console.log('✅ Contact Us testcase passed successfully.');
     }
 }
