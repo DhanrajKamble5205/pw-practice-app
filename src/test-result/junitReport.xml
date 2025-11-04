@@ -1,0 +1,6 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="12.286791000001132">
+<testsuite name="tests\mobileTest.spec.ts" timestamp="2025-10-31T04:25:51.528Z" hostname="Mobile" tests="1" failures="0" skipped="0" time="6.51" errors="0">
+<testcase name="Input text value" classname="tests\mobileTest.spec.ts" time="6.51">
+</testcase>
+</testsuite>
+</testsuites>

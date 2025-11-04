@@ -1,45 +1,79 @@
-// playwright.config.js
 import { defineConfig, devices } from '@playwright/test';
+//import {TestOptions} from './test-options';
 
-/**
- * See https://playwright.dev/docs/test-configuration
- */
-export default defineConfig({
- // timeout : 10000,
-  testDir: './tests', // ✅ Make sure your test files are inside this folder
+export default defineConfig({  //it is called as globle setting and same setting which can be add in project level also.
+  timeout : 40000,
+  globalTimeout : 60000,
+
+  expect: {
+    timeout: 2000
+  },
+
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
 
+  
+  retries: 0,
+  //workers: process.env.CI ? 1 : undefined,
+  //reporter: 'html',// we can change the reporter type like json
+  reporter: [
+    ['json',{outputFile: 'test-result/jsonReport.json'}],
+    ['junit',{outputFile: 'test-result/junitReport.xml'}],
+    ['allure-playwright']
+  ],
+  
   use: {
+    baseURL: process.env.DEV === '1' ? 'https://www.letskodeit.com/practice'
+           : process.env.Test === '1' ? 'https://www.amazon.in/'
+            : 'https://www.amazon.in/',
+
     trace: 'on-first-retry',
-    //baseURL: 'https://www.letskodeit.com/practice', // optional
-    headless: false,    // so you can see the browser
-    viewport: null,     // makes browser full window size
+    headless: false,    // optional — helps you see the window
+    viewport: null,      // disables Playwright's default viewport size
+    launchOptions: {
+      args: ['--start-maximized'], // works for Chromium-based browsers
+    },
     ignoreHTTPSErrors: true,
     screenshot: 'only-on-failure',
+    video: 'on'
   },
 
   projects: [
     {
+      name: 'Dev',
+      use: { ...devices['Desktop Chrome'] ,
+      baseURL: 'https://www.amazon.in/' // the URL is for example on project it will different
+      }
+    },
+    {
+      name: 'Test',
+      use: { ...devices['Desktop Chrome'] ,
+      baseURL: 'https://www.amazon.in/'  // the URL is for example on project it will different
+      }
+    },
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        browserName: 'chromium'
+       },
     },
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { 
+        browserName: 'firefox'
+       },
     },
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { 
+        browserName: 'webkit'
+       },
     },
-  ],
-
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+    {
+      name: 'Mobile',
+      testMatch: 'mobileTest.spec.ts',
+      use:{
+        ...devices['Galaxy S24']
+      }
+    }
+  ]
 });

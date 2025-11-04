@@ -16,8 +16,11 @@ export class PageManager {
 
     navigateTo(){
         return this.navigationPage
+        
     }
-
+    fromLayoutsPage(){
+            return this.page.locator('#navbar').screenshot({ path: 'Screenshot/Layout.png'})
+        }
     DatePick(){
         return this.DatePick
     }

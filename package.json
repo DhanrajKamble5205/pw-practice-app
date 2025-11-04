@@ -1,11 +1,11 @@
 {
   "name": "ngx-admin",
   "version": "10.0.0",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bondar-artem/pw-practice-app.git"
   },
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve"
@@ -56,15 +56,17 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^20.3.5",
+    "@angular-devkit/build-angular": "^14.2.13",
     "@angular/cli": "^14.2.10",
     "@angular/compiler-cli": "^14.2.12",
     "@angular/language-service": "14.2.12",
     "@compodoc/compodoc": "^1.1.19",
+    "@faker-js/faker": "^10.1.0",
     "@fortawesome/fontawesome-free": "^5.2.0",
     "@playwright/test": "^1.56.0",
     "@types/leaflet": "1.2.3",
     "@types/node": "^12.12.70",
+    "allure-playwright": "^3.4.2",
     "codelyzer": "^0.0.28",
     "conventional-changelog-cli": "^2.2.2",
     "npm-run-all": "^4.1.5",
